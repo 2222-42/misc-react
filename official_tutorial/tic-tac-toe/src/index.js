@@ -20,6 +20,7 @@ class Board extends React.Component {
         super(props);
         this.state = {
             squares: Array(9).fill(null),
+            xIsNext: true,
         };
     }
 
@@ -29,8 +30,11 @@ class Board extends React.Component {
                                                         1. 複雑な機能が簡単に実装できる
                                                         2. 変更の検出
                                                         3. React の再レンダータイミングの決定 */
-        squares[i] = 'X';
-        this.setState({ squares: squares });
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            squares: squares,
+            xIsNext: !this.state.xIsNext,
+        });
     }
     renderSquare(i) {
         return <Square
@@ -40,7 +44,7 @@ class Board extends React.Component {
     }
 
     render() {
-        const status = 'Next player: X';
+        const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
         return (
             <div>
