@@ -2,23 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Square extends React.Component {
-    constructor(props) {
-        super(props); // サブクラスのコンストラクタを定義する際は常に super を呼ぶ必要があります
-        this.state = {
-            value: null,
-        };
-    }
-    render() {
-        return (
-            <button
-                className="square"
-                onClick={() => this.props.onClick()}
-            >
-                {this.props.value}
-            </button >
-        );
-    }
+function Square(props) { /* 関数コンポーネント: 
+                                自分の state を持たないコンポーネントを、よりシンプルに書くための方法 
+                                React.Component を継承するクラスを定義する代わりに、props を入力として受け取り表示すべき内容を返す関数を定義*/
+    return (
+        <button
+            className="square"
+            onClick={props.onClick}
+        >
+            {props.value}
+        </button >
+    );
 }
 
 class Board extends React.Component {
