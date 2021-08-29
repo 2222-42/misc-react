@@ -30,7 +30,11 @@ class Board extends React.Component {
     }
 
     handleClick(i) {
-        const squares = this.state.squares.slice();
+        const squares = this.state.squares.slice(); /* 現在の配列を直接変更する代わりに、square 配列のコピーを作成し、それを変更する
+                                                       直接データのミューテート（すなわち内部データの書き換え）をしないことの利点
+                                                        1. 複雑な機能が簡単に実装できる
+                                                        2. 変更の検出
+                                                        3. React の再レンダータイミングの決定 */
         squares[i] = 'X';
         this.setState({ squares: squares });
     }
